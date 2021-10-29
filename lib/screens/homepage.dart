@@ -2,6 +2,8 @@ import 'package:finance_manager/dummydata/dummydata.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'addTransaction.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -15,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTransaction()));
         },
         child: Icon(Icons.add),
       ),
