@@ -102,7 +102,7 @@ class _AddTransactionState extends State<AddTransaction> {
               _buildDateField(),
               SizedBox(height: 100,),
               RaisedButton(
-                child: Text('Add Transaction', style: TextStyle(color: Colors.blue, fontSize: 16),),
+                child: Text('Add Transaction', style: TextStyle(color: Colors.white, fontSize: 16, backgroundColor: Colors.blue),),
                 onPressed: () => {},
               ),
             ])),
