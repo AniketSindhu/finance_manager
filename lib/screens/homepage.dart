@@ -1,8 +1,10 @@
 import 'package:finance_manager/dummydata/dummydata.dart';
 import 'package:finance_manager/screens/aboutUs.dart';
 import 'package:finance_manager/screens/privacyPolicy.dart';
+import 'package:finance_manager/theme_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 
 import 'addTransaction.dart';
 
@@ -39,7 +41,13 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PrivacyPolicy()));
               },
-              icon: Icon(Icons.privacy_tip))
+              icon: Icon(Icons.privacy_tip)),
+              IconButton(
+              onPressed: () {
+                ThemeBuilder.of(context)!.changeTheme();
+                
+              },
+              icon: Icon(Icons.lightbulb_outline)),
         ],
       ),
       body: Center(

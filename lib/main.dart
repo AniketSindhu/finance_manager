@@ -1,4 +1,5 @@
 import 'package:finance_manager/screens/homepage.dart';
+import 'package:finance_manager/theme_builder.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +11,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Finance Manager',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Finance Manager'),
-    );
+    return ThemeBuilder(
+      defaultBrightness: Brightness.light,
+      builder: (context, _brightness) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Finance Manager',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          brightness: _brightness,
+        ),
+        home: MyHomePage(title: 'Finance Manager'),
+      );
+    });
   }
 }
 
@@ -31,8 +37,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
+ 
 
   @override
   Widget build(BuildContext context) {
