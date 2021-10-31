@@ -1,20 +1,4 @@
-class Transaction {
-  int? amount;
-  String? title;
-  String? description;
-  DateTime? date;
-  String? from;
-  String? to;
-  int? type;
-  Transaction(
-      {this.amount,
-      this.title,
-      this.description,
-      this.date,
-      this.from,
-      this.to,
-      this.type});
-}
+import 'package:finance_manager/models/transaction.dart';
 
 List<Transaction> transactions = [
   Transaction(
