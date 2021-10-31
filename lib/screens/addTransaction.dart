@@ -1,3 +1,6 @@
+import 'package:finance_manager/dummydata/dummydata.dart';
+import 'package:finance_manager/functions/addFunc.dart';
+import 'package:finance_manager/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -8,81 +11,80 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-  late String _title;
-  late String _description;
-  late String _from;
-  late String _to;
-  late String _amount;
-  late String _date;
+  TextEditingController _title = TextEditingController();
+  TextEditingController _description = TextEditingController();
+  TextEditingController _from = TextEditingController();
+  TextEditingController _to = TextEditingController();
+  TextEditingController _amount = TextEditingController();
+  TextEditingController _date = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildTitleField() {
     return TextFormField(
+      controller: _title,
       decoration: InputDecoration(
         labelText: 'Title',
         labelStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
-      ),);
+      ),
+    );
   }
 
   Widget _buildDescriptionField() {
     return TextFormField(
+      controller: _description,
       decoration: InputDecoration(
         labelText: 'Description',
         labelStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
-      ),);
+      ),
+    );
   }
 
   Widget _buildFromField() {
     return TextFormField(
+      controller: _from,
       decoration: InputDecoration(
         labelText: 'From',
         labelStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
-      ),);
+      ),
+    );
   }
 
   Widget _buildToField() {
     return TextFormField(
+      controller: _to,
       decoration: InputDecoration(
         labelText: 'To',
         labelStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
-      ),);
+      ),
+    );
   }
 
   Widget _buildAmountField() {
     return TextFormField(
+      controller: _amount,
       decoration: InputDecoration(
         labelText: 'Amount',
         labelStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
-      ),);
+      ),
+    );
   }
 
-  Widget _buildDateField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Date',
-        labelStyle: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-        ),
-      ),);
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,11 +101,32 @@ class _AddTransactionState extends State<AddTransaction> {
               _buildFromField(),
               _buildToField(),
               _buildAmountField(),
-              _buildDateField(),
-              SizedBox(height: 100,),
+              SizedBox(
+                height: 100,
+              ),
               RaisedButton(
-                child: Text('Add Transaction', style: TextStyle(color: Colors.white, fontSize: 16, backgroundColor: Colors.blue),),
-                onPressed: () => {},
+                child: Text(
+                  'Add Transaction',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      backgroundColor: Colors.blue),
+                ),
+                onPressed: () async {
+                  Transaction transaction = Transaction(
+                      amount: int.parse(_amount.text),
+                      title: _title.text,
+                      description: _description.text,
+                      to: _to.text,
+                      type: _to.text.toLowerCase().trim() == 'aniket' ||
+                              _to.text.toLowerCase().trim() == 'himanshu'
+                          ? 1
+                          : 0,
+                      from: _from.text,
+                      date: DateTime.now());
+                  await addData(transaction);
+                  Navigator.pop(context);
+                },
               ),
             ])),
       ),
