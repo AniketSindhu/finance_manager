@@ -26,4 +26,16 @@ class Transaction {
       type: doc?['Type'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Amount': amount,
+      'Title': title,
+      'Description': description,
+      'Date': DateTime.now(),
+      'From': from,
+      'To': to,
+      'Type': type
+    };
+  }
 }
